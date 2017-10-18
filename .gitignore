@@ -1,0 +1,5 @@
+config/persist/*
+config/node_modules/*
+config/yarn.lock
+config/startup.sh
+config/accessories/*
