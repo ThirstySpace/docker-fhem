@@ -9,13 +9,12 @@ RUN apt-get update
 
 #### Install needed tools ####
 
-RUN apt-get -q -y install apt-utils apt-transport-https wget avrdude
+RUN apt-get -qy install apt-utils apt-transport-https wget avrdude
 
 WORKDIR /opt/fhem
 
-
 # install dependencies
-RUN apt-get -q -y install perl-base \
+RUN apt-get -qy install perl-base \
 libdevice-serialport-perl \
 libwww-perl \
 libio-socket-ssl-perl \
@@ -48,11 +47,6 @@ RUN wget -q http://fhem.de/fhem-5.8.deb
 RUN dpkg -i fhem-5.8.deb
 
 RUN rm -f fhem-5.8.deb
-
-COPY fhem.cfg /opt/fhem/fhem.cfg
-
-
-VOLUME /opt/fhem
 
 EXPOSE 8083 8084 8085 7072
 
