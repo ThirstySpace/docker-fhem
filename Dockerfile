@@ -1,6 +1,6 @@
 FROM resin/rpi-raspbian:stretch
 
-MAINTAINER neb
+MAINTAINER thirstyspace
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -49,21 +49,11 @@ RUN dpkg -i fhem-5.8.deb
 
 RUN rm -f fhem-5.8.deb
 
-#RUN echo 'attr global    nofork     1\n'    >> /opt/fhem/fhem.cfg && \
-#    echo 'attr WEB       editConfig 1\n'    >> /opt/fhem/fhem.cfg && \
-#    echo 'attr WEB       csrfToken  none\n' >> /opt/fhem/fhem.cfg && \
-#    echo 'attr WEBphone  csrfToken  none\n' >> /opt/fhem/fhem.cfg && \
-#    echo 'attr WEBtablet csrfToken  none\n' >> /opt/fhem/fhem.cfg 
-
 COPY fhem.cfg /opt/fhem/fhem.cfg
 
-#RUN cat /tmp/fhem.cfg >> /opt/fhem/fhem.cfg
 
-
-# cleanup
 VOLUME /opt/fhem
 
 EXPOSE 8083 8084 8085 7072
 
 CMD ["/usr/bin/perl", "fhem.pl", "fhem.cfg"]
-
